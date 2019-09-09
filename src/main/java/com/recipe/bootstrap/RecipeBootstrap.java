@@ -145,14 +145,14 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		guacNotes.setRecipe(guacRecipe);
 		
 		
-		guacRecipe.getIngredients().add(new Ingredient("ripe avocados", new BigDecimal(2), eachUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("Kosher salt", new BigDecimal(.5), teaSpoonUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("fresh lime juice", new BigDecimal(2), tableSpoonUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("minced red onion", new BigDecimal(2), tableSpoonUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("serrano chilies", new BigDecimal(2), eachUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("Cilantro", new BigDecimal(2), tableSpoonUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("freshly grated black pepper", new BigDecimal(2), dashUom,guacRecipe));
-		guacRecipe.getIngredients().add(new Ingredient("ripe tomato", new BigDecimal(.5), eachUom,guacRecipe));
+		guacRecipe.addIngredient(new Ingredient("ripe avocados", new BigDecimal(2), eachUom));
+		guacRecipe.addIngredient(new Ingredient("Kosher salt", new BigDecimal(.5), teaSpoonUom));
+		guacRecipe.addIngredient(new Ingredient("fresh lime juice", new BigDecimal(2), tableSpoonUom));
+		guacRecipe.addIngredient(new Ingredient("minced red onion", new BigDecimal(2), tableSpoonUom));
+		guacRecipe.addIngredient(new Ingredient("serrano chilies", new BigDecimal(2), eachUom));
+		guacRecipe.addIngredient(new Ingredient("Cilantro", new BigDecimal(2), tableSpoonUom));
+		guacRecipe.addIngredient(new Ingredient("freshly grated black pepper", new BigDecimal(2), dashUom));
+		guacRecipe.addIngredient(new Ingredient("ripe tomato", new BigDecimal(.5), eachUom));
 
 		
 		guacRecipe.getCategories().add(mexicanCategory);
@@ -180,12 +180,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 		tacosNotes.setRecipe(tacosRecipe);
 		tacosRecipe.setNotes(tacosNotes);
 		
-		tacosRecipe.getIngredients().add(new Ingredient("Ancho Chili Powder",new BigDecimal(2),tableSpoonUom, tacosRecipe));
-		tacosRecipe.getIngredients().add(new Ingredient("Dried Oregano",new BigDecimal(1),teaSpoonUom,tacosRecipe));
-		tacosRecipe.getIngredients().add(new Ingredient("Dried Cumin",new BigDecimal(1),teaSpoonUom,tacosRecipe));
-		tacosRecipe.getIngredients().add(new Ingredient("Sugar",new BigDecimal(1),teaSpoonUom,tacosRecipe));
-		tacosRecipe.getIngredients().add(new Ingredient("Salt",new BigDecimal(0.5),teaSpoonUom,tacosRecipe));
-		tacosRecipe.getIngredients().add(new Ingredient("Packed baby argula",new BigDecimal(3),cupUom,tacosRecipe));
+		tacosRecipe.addIngredient(new Ingredient("Ancho Chili Powder",new BigDecimal(2),tableSpoonUom));
+		tacosRecipe.addIngredient(new Ingredient("Dried Oregano",new BigDecimal(1),teaSpoonUom));
+		tacosRecipe.addIngredient(new Ingredient("Dried Cumin",new BigDecimal(1),teaSpoonUom));
+		tacosRecipe.addIngredient(new Ingredient("Sugar",new BigDecimal(1),teaSpoonUom));
+		tacosRecipe.addIngredient(new Ingredient("Salt",new BigDecimal(0.5),teaSpoonUom));
+		tacosRecipe.addIngredient(new Ingredient("Packed baby argula",new BigDecimal(3),cupUom));
 
 		tacosRecipe.getCategories().add(americanCategory);
 		tacosRecipe.getCategories().add(mexicanCategory);
