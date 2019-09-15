@@ -18,8 +18,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(exclude = {"ingredients","categories"})
 @Entity
 public class Recipe {
 
