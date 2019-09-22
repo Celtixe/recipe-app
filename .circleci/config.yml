@@ -2,13 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/<language>:<version TAG>
+      - image: circleci/java:11.0.3
     steps:
       - checkout
       - run: <command>
   test:
     docker:
-      - image: circleci/<language>:<version TAG>
+      - image: circleci/java:11.0.3
     steps:
       - checkout
       - run: <command>
