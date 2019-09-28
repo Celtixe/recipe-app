@@ -21,9 +21,38 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-
-	<div th:text="${recipe.description}"></div>
-	<div th:text="${recipe.id}"></div>
-	<div th:text="${recipe.directions}"></div>
+	<div style="margin-top: 50px"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="card border-success">
+					<div class="card-header">
+						<h1 class="card-title" th:text="'Recipe #' + ${recipe.id}">Recipe</h1>
+					</div>
+					<div class="card-body">
+						<h6>ID</h6>
+						<div th:text="${recipe.id}"></div>
+						<h6>Description</h6>
+						<div th:text="${recipe.description}"></div>					
+						<h6>Directions</h6>
+						<div th:text="${recipe.directions}"></div>
+							<h6>Ingredients</h6>
+							<ol>
+								<li th:each="ing : ${recipe.ingredients}" th:text="${ing.getDescription()} "></li>			
+							</ol>
+							<h6>Categories</h6>
+							<ol>
+								<li th:each="cat : ${recipe.categories}" th:text="${cat.getDescription()} "></li>
+							</ol>
+						<h6>Notes</h6>
+							<div th:text="${recipe.notes.getRecipeNotes()}"></div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
 </body>
 </html>
