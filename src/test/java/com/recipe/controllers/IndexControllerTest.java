@@ -39,7 +39,7 @@ public class IndexControllerTest {
 		indexController = new IndexController(recipeService);
 	}
 	
-	
+	@Test
 	public void testMockMVC() throws Exception{
 		MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
 		mockMvc.perform(get("/"))
