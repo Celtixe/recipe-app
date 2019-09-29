@@ -13,6 +13,8 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import com.recipe.converters.RecipeCommandToRecipe;
+import com.recipe.converters.RecipeToRecipeCommand;
 import com.recipe.domain.Recipe;
 import com.recipe.repositories.RecipeRepository;
 
@@ -22,12 +24,15 @@ public class RecipeServiceImplTest {
 	
 	@Mock
 	RecipeRepository recipeRepository;
-	
+	@Mock
+	RecipeCommandToRecipe rc;
+	@Mock
+	RecipeToRecipeCommand cr;
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		
-		recipeService = new RecipeServiceImpl(recipeRepository);
+		recipeService = new RecipeServiceImpl(recipeRepository,rc,cr);
 	}
 	
 	@Test
