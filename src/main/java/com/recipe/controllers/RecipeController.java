@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.recipe.commands.RecipeCommand;
 import com.recipe.services.RecipeService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class RecipeController {
 	private final RecipeService recipeService;
@@ -19,7 +22,7 @@ public class RecipeController {
 		this.recipeService = recipeService;
 	}
 	
-	@GetMapping("/recipe/show/{id}")
+	@GetMapping("/recipe/{id}/show")
 	public String showById(@PathVariable Long id,Model m) {
 		m.addAttribute("recipe",recipeService.findById(id));
 		return "recipe/show";
@@ -32,9 +35,23 @@ public class RecipeController {
 	}
 
 	
+	@RequestMapping("recipe/{id}/update")
+	public String updateRecipe(@PathVariable Long id,Model m) {
+		m.addAttribute("recipe", recipeService.findCommandById(id));
+		return "recipe/recipeForm";
+	}
+	
 	@PostMapping("recipe")
 	public String saveOrUpdate(@ModelAttribute RecipeCommand command) {
 		RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
-		return "redirect:/recipe/show/" + savedCommand.getId();
+		return "redirect:/recipe/" + savedCommand.getId() + "/show";
+	}
+	
+	
+	@GetMapping("recipe/{id}/delete")
+	public String deleteById(@PathVariable Long id) {
+		recipeService.deleteById(id);
+		log.debug("Deleting recipe id:" + id);
+		return "redirect:/";
 	}
 }
