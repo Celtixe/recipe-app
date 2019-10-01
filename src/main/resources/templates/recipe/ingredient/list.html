@@ -27,26 +27,25 @@
 			<div class="col-md-6 offset-md-3">
 				<div class="card border-success">
 					<div class="card-header">
-						<h1 class="card-title" th:text="'Recipe #' + ${recipe.id}">Recipe</h1>
+						<h1 class="card-title" th:text="'Ingredients list'">Ingredients list</h1>
 					</div>
 					<div class="card-body">
-						<h6>ID</h6>
-						<div th:text="${recipe.id}"></div>
-						<h6>Description</h6>
-						<div th:text="${recipe.description}"></div>					
-						<h6>Directions</h6>
-						<div th:text="${recipe.directions}"></div>
-							<h6>Ingredients</h6>
-							 <a class="btn btn-primary" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
-							<ol>
-								<li th:each="ing : ${recipe.ingredients}" th:text="${ing.getDescription()} "></li>			
-							</ol>
-							<h6>Categories</h6>
-							<ol>
-								<li th:each="cat : ${recipe.categories}" th:text="${cat.getDescription()} "></li>
-							</ol>
-						<h6>Notes</h6>
-							<div th:text="${recipe.notes.getRecipeNotes()}"></div>
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<td>Id</td>
+									<td>Description</td>
+									<td>View</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="ing : ${recipe.ingredients}">
+									<td th:text="${ing.getId()}"></td>
+									<td th:text="${ing.getDescription()}"></td>
+									<td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ing.getId()} + '/show'}">View</a></td>
+								</tr>
+							</tbody>
+						</table>
 						
 					</div>
 				</div>
