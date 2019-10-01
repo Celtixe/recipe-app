@@ -36,13 +36,16 @@
 									<td>Id</td>
 									<td>Description</td>
 									<td>View</td>
+									<td>Update</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr th:each="ing : ${recipe.ingredients}">
 									<td th:text="${ing.getId()}"></td>
-									<td th:text="${ing.getDescription()}"></td>
+									<td th:text="${ing.getDescription()}"></td>									
 									<td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ing.getId()} + '/show'}">View</a></td>
+									<td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ing.getId()} + '/update'}">Update</a></td>
+								
 								</tr>
 							</tbody>
 						</table>

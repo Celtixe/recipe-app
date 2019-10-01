@@ -3,10 +3,14 @@ package com.recipe.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.recipe.commands.IngredientCommand;
 import com.recipe.services.IngredientService;
 import com.recipe.services.RecipeService;
+import com.recipe.services.UnitOfMeasureService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -15,10 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 public class IngredientController {
 	private final RecipeService recipeService;
 	private final IngredientService ingredientService;
-	
-	public IngredientController(RecipeService recipeService, IngredientService ingredientService) {
+    private final UnitOfMeasureService unitOfMeasureService;
+
+	public IngredientController(RecipeService recipeService, IngredientService ingredientService,
+			UnitOfMeasureService unitOfMeasureService) {
 		this.recipeService = recipeService;
 		this.ingredientService = ingredientService;
+		this.unitOfMeasureService = unitOfMeasureService;
 	}
 
 
@@ -39,4 +46,23 @@ public class IngredientController {
         return "recipe/ingredient/show";
     }
 	
+  
+    @GetMapping("recipe/{recipeId}/ingredient/{id}/update")
+    public String updateRecipeIngredient(@PathVariable Long recipeId,
+                                         @PathVariable Long id, Model model){
+        model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(recipeId,id));
+
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+        return "recipe/ingredient/ingredientForm";
+    }
+    
+    @PostMapping("recipe/{recipeId}/ingredient")
+    public String saveOrUpdate(@ModelAttribute IngredientCommand command){
+        IngredientCommand savedCommand = ingredientService.saveIngredientCommand(command);
+
+        log.debug("saved receipe id:" + savedCommand.getRecipeId());
+        log.debug("saved ingredient id:" + savedCommand.getId());
+
+        return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
+    }
 }
